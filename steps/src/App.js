@@ -17,7 +17,6 @@ export default function App() {
 function Steps() {
   const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
-  // const [test, setTest] = useState({ name: "Jonas" });
 
   function handlePrevious() {
     if (step > 1) setStep((s) => s - 1);
@@ -25,7 +24,6 @@ function Steps() {
 
   function handleNext() {
     if (step < 3) setStep((s) => s + 1);
-    // setTest({ name: "Julius" });
   }
 
   return (
@@ -41,10 +39,7 @@ function Steps() {
             <div className={step >= 3 ? "active" : ""}>3</div>
           </div>
 
-          <p className="message">
-            Step {step} : {messages[step - 1]}
-            {/* {test.name} */}
-          </p>
+          <StepMessage step={step}>{messages[step - 1]}</StepMessage>
 
           <div className="buttons">
             <Button bgColor="#7960f2" textColor="#fff" onClick={handlePrevious}>
@@ -57,6 +52,15 @@ function Steps() {
         </div>
       )}
     </>
+  );
+}
+
+function StepMessage({ step, children }) {
+  return (
+    <p className="message">
+      <h3>Step {step}</h3>
+      {children}
+    </p>
   );
 }
 
